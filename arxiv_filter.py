@@ -2,6 +2,7 @@ import pandas as pd
 from rich.console import Console
 from rich.table import Table
 from rich.style import Style
+from rich import box
 
 from util import add_to_table, get_until
 
@@ -12,9 +13,11 @@ with console.status('Reading papers...', spinner='monkey'):
     # read keywords and authors from keywords.txt and authors.txt
     with open('keywords.txt', 'r') as file:
         keywords = file.read().splitlines()
+        keywords = [keyword for keyword in keywords if len(keyword) > 2]
 
     with open('authors.txt', 'r') as file:
         authors = file.read().splitlines()
+        authors = [author for author in authors if len(author) > 2]
 
     # read lines from mail_text.txt
     with open('mail_text.txt', 'r') as file:
@@ -44,7 +47,7 @@ with console.status('Reading papers...', spinner='monkey'):
     df = pd.DataFrame(results)
 
     # --- OUTPUT ---
-    table = Table(box=None)
+    table = Table(box=box.HORIZONTALS, show_lines=False, show_header=False)
     keyword_style = Style(color="red", bold=True)
     table.add_column(max_width=15, justify='center', style=keyword_style)
     table.add_column()
@@ -53,10 +56,12 @@ with console.status('Reading papers...', spinner='monkey'):
         table.add_row(keyword)
         match = df[df['title'].str.contains(keyword, case=False) | df['abstract'].str.contains(keyword, case=False)]
         table = add_to_table(match, table, keyword)
+        table.add_section()
 
     for author in authors:
         table.add_row(author)
         match = df[df['authors'].str.contains(author, case=False)]
         table = add_to_table(match, table, author)
+        table.add_section()
 
 console.print(table)
