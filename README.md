@@ -22,6 +22,12 @@ Clone the repo.
 3. Copy mail contents into `mail_text.txt`.
 4. `python arxiv_filter.py`
 
+For maximum efficiency, setup this alias:
+```bash
+alias arxiv="cd <path_to_repo> && open mail_text.txt && read -s -k '?Press any key to continue.' && python arxiv_filter.py"
+```
+Then all you need is to copy the main contents and press any key. 
+
 ## Contributing
 
 Any feedback is welcome. 
