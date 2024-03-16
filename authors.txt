@@ -1,0 +1,3 @@
+Yoshua Bengio
+Yann LeCun
+Geoffrey Hinton
