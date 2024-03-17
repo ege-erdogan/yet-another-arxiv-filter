@@ -13,14 +13,14 @@ A hacky keyword/author search through daily arxiv emails. There are probably som
 
 ## Installation
 
-Clone the repo.
+1. Clone the repo.
+2. `pip install rich` for pretty output. 
 
 ## Usage
 
-1. `pip install rich` for pretty output. 
-2. Fill `keywords.txt` and `authors.txt` (one per line). Keywords are searched in the title and abstract.
-3. Copy mail contents into `mail_text.txt`.
-4. `python arxiv_filter.py`
+1. Fill `keywords.txt` and `authors.txt` (one per line). Keywords are searched in the title and abstract.
+2. Copy mail contents into `mail_text.txt`.
+3. `python arxiv_filter.py`
 
 For maximum efficiency, setup this alias:
 ```bash
