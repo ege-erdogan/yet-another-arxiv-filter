@@ -37,6 +37,8 @@ with console.status('Reading papers...', spinner='monkey'):
             results['url'].append(f'https://arxiv.org/abs/{id}')
         elif line.startswith('Title:'):
             results['title'].append(get_until(i, lines, 'Authors:', n_skip=7))
+            if len(results['url']) != len(results['title']):
+                results['url'] = results['url'][:-1]
         elif line.startswith('Authors:'):
             results['authors'].append(get_until(i, lines, 'Categories:', n_skip=9))
         elif line.startswith('Categories:'):
